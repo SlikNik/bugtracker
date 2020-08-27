@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
         integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <title>Bug Tracker</title>
 </head>
 
@@ -27,11 +28,22 @@
         </li>
         {% endif %}
     </ul>
+    <ul class="nav justify-content-end" style="position: absolute; top: 3px; right: 3px;">
+        <li class="nav-item">
+            <button class="btn btn-secondary"><a class="nav-link" href="/ticket/submit/"
+                    style="color: orangered;">Submit A New Ticket</a></button>
+        </li>
+    </ul>
+    <br>
+    <br>
     <div class="container">
         <h1 style="color: orangered;">{{ current_user.username }}'s Tickets</h1>
-        <h4 style="color: orangered;">Display Name: {{ current_user.displayname}}</h4>
+        <h4 style="color: orangered;">User Name: {{ current_user.username}}</h4>
+        <h4 style="color: orangered;">Position:</h4>
+        <br>
+        <br>
         <div class="card">
-            <h5 class="card-header">Assigned </h5>
+            <h5 class="card-header bg-warning mg-3" style="color: rgb(74, 75, 77)">Assigned </h5>
             <div class="card-body">
                 <table class="table table-hover">
                     <thead>
@@ -60,8 +72,10 @@
                 </table>
             </div>
         </div>
+        <br>
+        <br>
         <div class="card">
-            <h5 class="card-header">Filed</h5>
+            <h5 class="card-header bg-primary mg-3" style="color: rgb(74, 75, 77)">Filed</h5>
             <div class="card-body">
                 <table class="table table-hover">
                     <thead>
@@ -91,8 +105,10 @@
                 </table>
             </div>
         </div>
+        <br>
+        <br>
         <div class="card">
-            <h5 class="card-header">Completed</h5>
+            <h5 class="card-header bg-success mg-3" style="color: rgb(74, 75, 77)">Completed</h5>
             <div class="card-body">
                 <table class="table table-hover">
                     <thead>

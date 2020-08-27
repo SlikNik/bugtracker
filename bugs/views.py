@@ -39,7 +39,45 @@ def ticket_submit(request):
     form = AddTicketForm()
     return render(request, 'generic_form.html', {'form': form})
 
-   
+@login_required
+def ticket_edit(request, id):
+    current_ticket = Ticket.objects.get(id=id)
+    if request.method == 'POST':
+        form = AddTicketForm(request.POST)
+        if form.is_valid():
+            new_ticket = form.cleaned_data
+            current_ticket.title = new_ticket['title']
+            current_ticket.description = new_ticket['description']
+            current_ticket.save()
+        return HttpResponseRedirect(reverse('ticketdetails', args=[current_ticket.id]))
+    form = AddTicketForm(initial={'title' : current_ticket.title, 'description': current_ticket.description})
+    return render(request, 'generic_form.html', {'form': form})
+
+@login_required
+def ticket_claim(request, id):
+    current_ticket = Ticket.objects.filter(id=id).first()
+    current_ticket.assignedTo = request.user.username
+    current_ticket.status = "IN PROGRESS"
+    current_ticket.save()
+    return HttpResponseRedirect(reverse('ticketdetails', args=[current_ticket.id]))
+
+@login_required
+def ticket_complete(request, id):
+    current_ticket = Ticket.objects.filter(id=id).first()
+    current_ticket.assignTo = 'NONE'
+    current_ticket.completedBy = request.user.username
+    current_ticket.status = "DONE"
+    current_ticket.save()
+    return HttpResponseRedirect(reverse('ticketdetails', args=[current_ticket.id]))
+
+@login_required
+def ticket_invalid(request, id):
+    current_ticket = Ticket.objects.filter(id=id).first()
+    current_ticket.assignTo = 'NONE'
+    current_ticket.completedBy = 'NONE'
+    current_ticket.status = "INVALID"
+    current_ticket.save()
+    return HttpResponseRedirect(reverse('ticketdetails', args=[current_ticket.id]))
 
 def login_view(request):
     if request.method == "POST":
