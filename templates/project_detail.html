@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container" style="color: rgb(74, 75, 77)">
+        <div class="card">
+            {% if project.status == 'NEW' %}
+                <div class="card-header bg-primary mb-3"> 
+                    <button type="button" class="btn btn-secondary">{{project.id}}</button> 
+                    <h1>{{project.title}}</h1>
+                    <div class=" row justify-content-end">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Action
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/project/claim/{{project.id}}/">Start Project</a>
+                                <a class="dropdown-item" href="/project/complete/{{project.id}}/">Complete Project</a>
+                                <a class="dropdown-item" href="/project/edit/{{project.id}}/">Edit Project</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/project/invalid/{{project.id}}/">Mark Invalid</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Status</th>
+                                <th scope="col">Project Age</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Company</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{project.status}}</th>
+                                <td>{{ project.date }}</td>
+                                <td>{{ project.description }}</td>
+                                <td><a href="/company/{{project.company}}" class="card-link"
+                                    style="color: orange;">{{ project.company }}</a>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% elif project.status == 'DONE' %}
+                <div class="card-header bg-success mb-3"> 
+                    <button type="button" class="btn btn-secondary">{{project.id}}</button> 
+                    <h1>{{project.title}}</h1>
+                    <div class=" row justify-content-end">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Action
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/project/claim/{{project.id}}/">Start Project</a>
+                                <a class="dropdown-item" href="/project/complete/{{project.id}}/">Complete Project</a>
+                                <a class="dropdown-item" href="/project/edit/{{project.id}}/">Edit Project</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/project/invalid/{{project.id}}/">Mark Invalid</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Status</th>
+                                <th scope="col">Project Age</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Company</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{project.status}}</th>
+                                <td>{{ project.date }}</td>
+                                <td>{{ project.description }}</td>
+                                <td><a href="/company/{{project.company}}" class="card-link"
+                                    style="color: orange;">{{ project.company }}</a>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% elif project.status == 'INPROGRESS' %}
+            <div class="card-header bg-warning mb-3"> 
+                <button type="button" class="btn btn-secondary">{{project.id}}</button> 
+                <h1>{{project.title}}</h1>
+                <div class=" row justify-content-end">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/project/claim/{{project.id}}/">Start Project</a>
+                            <a class="dropdown-item" href="/project/complete/{{project.id}}/">Complete Project</a>
+                            <a class="dropdown-item" href="/project/edit/{{project.id}}/">Edit Project</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/project/invalid/{{project.id}}/">Mark Invalid</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Status</th>
+                            <th scope="col">Project Age</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{project.status}}</th>
+                            <td>{{ project.date }}</td>
+                            <td>{{ project.description }}</td>
+                            <td><a href="/company/{{project.company}}" class="card-link"
+                                style="color: orange;">{{ project.company }}</a>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="card-header bg-danger mb-3"> 
+                <button type="button" class="btn btn-secondary">{{project.id}}</button> 
+                <h1>{{project.title}}</h1>
+                <div class=" row justify-content-end">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/project/claim/{{project.id}}/">Start Project</a>
+                            <a class="dropdown-item" href="/project/complete/{{project.id}}/">Complete Project</a>
+                            <a class="dropdown-item" href="/project/edit/{{project.id}}/">Edit Project</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/project/invalid/{{project.id}}/">Mark Invalid</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Status</th>
+                            <th scope="col">Project Age</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{project.status}}</th>
+                            <td>{{ project.date }}</td>
+                            <td>{{ project.description }}</td>
+                            <td><a href="/company/{{project.company}}" class="card-link"
+                                style="color: orange;">{{ project.company }}</a>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+        integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!-- {% if request.user.is_authenticated and request.user.is_teacher %}
+      <link rel="stylesheet" type="text/css" href="{% static 'css/teachers.css' %}">
+    {% else %}
+      <link rel="stylesheet" type="text/css" href="{% static 'css/students.css' %}">
+    {% endif %} -->
+    <title>Bug Tracker</title>
+</head>
+
+<body>
+    <div class="container my-4" style="color: orangered;">
+      <div class="row justify-content-center">
+        <div class="col-md-10 col-sm-12">
+          <div class="row">
+            <div class="col-6">
+              <h1 class="logo">
+                <a href="{% url 'homepage' %}" style="color: orange;">
+                  Bug Tracker
+                  Date: {% now "jS F Y H:i" %}
+                  {% if request.user.is_authenticated %}
+                    {% if request.user.role == 'COMPANY' %}
+                      <span class="icon-feather" data-toggle="tooltip" data-placement="right" title="Company profile" style="color: orange;"></span>
+                    {% else %}
+                      <span class="icon-graduation-cap" data-toggle="tooltip" data-placement="right" title="Employee profile" style="color: orange;"></span>
+                    {% endif %}
+                  {% endif %}
+                </a>
+              </h1>
+            </div>
+            <div class="col-6 text-right">
+              {% if request.user.is_authenticated %}
+                <p class="pt-4">Logged in as <strong>{{ request.user.username }}</strong>. </p>
+                <a href="{% url 'logout' %}" class="btn btn-light" role="button" style="color: orangered;">Log Out</a>
+                <br>
+                {% if request.user.role == 'ADMIN' %}
+                  <a href="{% url 'alltickets' %}" class="btn btn-secondary" role="button" style="color: orangered;">All Tickets</a>
+                  <a href="{% url 'allprojects' %}" class="btn btn-secondary" role="button" style="color: orangered;">All Projects</a>
+                  <a href="{% url 'allcompanies' %}" class="btn btn-secondary" role="button" style="color: orangered;"> All Companies</a>
+                  <a href="{% url 'allemployees' %}" class="btn btn-secondary" role="button" style="color: orangered;">All Employess</a>
+                {% elif request.user.role == 'COMPANY' %}
+                  <a href="/company/{{request.user.username}}/" class="btn btn-secondary" role="button" style="color: orangered;"> Company Profile</a>
+                  <a href="/project/submit/" class="btn btn-secondary" role="button" style="color: orangered;"> Submit Project</a>
+                {% else %}
+                  <a href="employee/{{request.user.username}}" class="btn btn-secondary" role="button" style="color: orangered;"> Employee Profile</a>
+                  <a href="/ticket/submit/" class="btn btn-secondary" role="button" style="color: orangered;"> Submit Ticket</a>
+                {% endif %}
+              {% else %}
+                <a href="{% url 'login' %}" class="btn btn-light" role="button" style="color: orangered;">Log in</a>
+                <a href="{% url 'signup' %}" class="btn btn-secondary" role="button" style="color: orangered;">Sign up</a>
+              {% endif %}
+            </div>
+          </div>
+          <div class="card mb-3" style="color: orangered;">
+            <div class="card-body">
+              {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+              {% block content %}
+              {% endblock %}
+            </div>
+          </div>
+          <footer style="color: orangered;">
+            👾 Bugs, Bugs, Bugs! 👾
+          </footer>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      })
+    </script>
+  </body>
+</html>

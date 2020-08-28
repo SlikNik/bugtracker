@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 style="color: orangered;">{{ current_company.name }}'s Projects</h1>
+    <h4 style="color: orangered;">Founded: {{ current_company.founded}}</h4>
+    <h4 style="color: orangered;">Specialize In: {{ current_company.specialize_in }} {{ current_user.lastname }}</h4>
+    <h4 style="color: orangered;">Joined: {{ current_company.sign_up_date }}</h4>
+    {% if request.user.username ==  current_company.user.username %}
+    <h4 style="color: orangered;">Code: {{ current_company.company_code }}</h4>
+    {% endif %}
+    <br>
+    <br>
+    <div class="card">
+        <h5 class="card-header bg-primary mb-3" style="color: rgb(74, 75, 77)">NEW</h5>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Project Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in new_projects %}
+                    <tr>
+                        <th scope="row">{{project.id}}</th>
+                        <td> <a href="/project/{{project.id}}" class="card-link" style="color: orange;">{{ project.title }}</a></td>
+                        <td>{{ project.description }}</td>
+                    
+                        <td>{{ project.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <h5 class="card-header bg-warning mb-3" style="color: rgb(74, 75, 77)">IN PROGRESS</h5>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Project Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in progress_projects %}
+                    <tr>
+                        <th scope="row">{{project.id}}</th>
+                        <td> <a href="/project/{{project.id}}" class="card-link" style="color: orange;">{{ project.title }}</a></td>
+                        <td>{{ project.description }}</td>
+                        <td>{{ project.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <h5 class="card-header bg-success mb-3" style="color: rgb(74, 75, 77)">DONE</h5>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Project Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in done_projects %}
+                    <tr>
+                        <th scope="row">{{project.id}}</th>
+                        <td> <a href="/project/{{project.id}}" class="card-link" style="color: orange;">{{ project.title }}</a></td>
+                        <td>{{ project.description }}</td>
+                    
+                        <td>{{ project.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <h5 class="card-header bg-danger mb-3" style="color: rgb(74, 75, 77)">INVALID</h5>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Project Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for project in invalid_projects %}
+                    <tr>
+                        <th scope="row">{{project.id}}</th>
+                        <td> <a href="/project/{{project.id}}" class="card-link" style="color: orange;">{{ project.title }}</a></td>
+                        <td>{{ project.description }}</td>
+                    
+                        <td>{{ project.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

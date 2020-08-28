@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="color: orangered;">
+    <h2>All Employees</h2>
+    <br>
+    {% for employee in employees%}
+    <h2><a href="/employee/{{employee.user}}" class="card-link" style="color: orange;">{{ employee.firstname }}
+            {{ employee.lastname }}</a></h2>
+    {% endfor %}
+</div>
+{% endblock %}

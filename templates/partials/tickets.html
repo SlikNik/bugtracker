@@ -1,0 +1,36 @@
+<div class="card">
+    <h5 class="card-header bg-{{type}} mb-3" style="color: rgb(74, 75, 77)">{{Status}}</h5>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Project</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Assign To</th>
+                    <th scope="col">Reported By</th>
+                    <th scope="col">Ticket Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <th scope="row">{{ticket.id}}</th>
+                    <td>{{ ticket.project }}</td>
+                    <td> <a href="/ticket/{{ticket.id}}" class="card-link"
+                            style="color: orange;">{{ ticket.title }}</a>
+                    </td>
+                    <td><a href="/employee/{{ticket.assignedTo}}" class="card-link"
+                            style="color: orange;">{{ ticket.assignedTo }}</a></td>
+                    <td><a href="/employee/{{ticket.filedBy.username}}" class="card-link"
+                            style="color: orange;">{{ ticket.filedBy }}</a></td>
+                    <td>{{ ticket.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<br>
+
+<t

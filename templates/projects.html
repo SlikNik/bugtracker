@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container" style="color: orangered;">
+        {% if request.user.is_authenticated %}
+        <h1>{{request.user.username}}</h1>
+        <h2>All Buggy Projects</h2>
+        {% else %}
+        <h1>All Buggy Projects</h1>
+        {% endif %}
+        <br>
+        <br>
+        {% include "partials/projects.html" with projects=new_projects status='NEW' type='primary'%}
+        {% include "partials/projects.html" with projects=progress_project status='IN PROGRESS' type='warning'%}
+        {% include "partials/projects.html" with projects=done_project status='DONE' type='success'%}
+        {% include "partials/projects.html" with projects=invalid_project status='INVALID' type='danger'%}
+    </div>
+{% endblock %}

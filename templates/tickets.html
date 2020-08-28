@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container" style="color: orangered;">
+        {% if request.user.is_authenticated %}
+        <h1>{{request.user.username}}</h1>
+        <h2>All Buggy Tickets</h2>
+        {% else %}
+        <h1>All Buggy Tickets</h1>
+        {% endif %}
+        <br>
+        <br>
+        {% include "partials/tickets.html" with tickets=new_tickets status='NEW' type='primary'%}
+        {% include "partials/tickets.html" with tickets=progress_tickets status='IN PROGRESS' type='warning'%}
+        {% include "partials/tickets.html" with tickets=done_tickets status='DONE' type='success'%}
+        {% include "partials/tickets.html" with tickets=invalid_tickets status='INVALID' type='danger'%}
+    </div>
+{% endblock %}

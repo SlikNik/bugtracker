@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    {% now "jS F Y H:i" %}
+  <h2>Welcome to the Bug Tracker! <span class="icon-emo-happy" style="color: orangered;"></span></h2>
+  <p class="lead">
+    If you already have an account, go ahead and <a href="{% url 'login' %}" style="color: orange;">log in</a>. If you are new toBug Tracker, get started
+    by creating a <a href="{% url 'employee_signup' %}" style="color: orange;">employee account</a> or a <a href="{% url 'company_signup' %}" style="color: orange;">company account</a>.
+  </p>
+{% endblock %}
