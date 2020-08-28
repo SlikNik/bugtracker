@@ -19,6 +19,12 @@ class Ticket(models.Model):
         default=Status.NEW)
     assignedTo = models.CharField(max_length=240, default='NONE')
     completedBy = models.CharField(max_length=240, default='NONE')
+    markedBy = models.CharField(max_length=240, default='NONE')
+
 
     def __str__(self):
         return self.status
+    
+    @property
+    def age(self):
+        return int((timezone.now() - self.date).days / 365.25)

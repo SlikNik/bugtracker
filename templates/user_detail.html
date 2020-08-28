@@ -65,7 +65,8 @@
                                     style="color: orange;">{{ ticket.assignedTo }}</a></td>
                             <td><a href="/user/{{ticket.filedBy.username}}" class="card-link"
                                     style="color: orange;">{{ ticket.filedBy }}</a></td>
-                            <td>{{ ticket.date }}</td>
+                            <td>{{ ticket.age }} day(s)</td>
+
                         </tr>
                         {% endfor %}
                     </tbody>

@@ -57,6 +57,7 @@ def ticket_edit(request, id):
 def ticket_claim(request, id):
     current_ticket = Ticket.objects.filter(id=id).first()
     current_ticket.assignedTo = request.user.username
+    current_ticket.completedBy = 'NONE'
     current_ticket.status = "IN PROGRESS"
     current_ticket.save()
     return HttpResponseRedirect(reverse('ticketdetails', args=[current_ticket.id]))
@@ -64,7 +65,7 @@ def ticket_claim(request, id):
 @login_required
 def ticket_complete(request, id):
     current_ticket = Ticket.objects.filter(id=id).first()
-    current_ticket.assignTo = 'NONE'
+    current_ticket.assignedTo = 'NONE'
     current_ticket.completedBy = request.user.username
     current_ticket.status = "DONE"
     current_ticket.save()
@@ -73,8 +74,9 @@ def ticket_complete(request, id):
 @login_required
 def ticket_invalid(request, id):
     current_ticket = Ticket.objects.filter(id=id).first()
-    current_ticket.assignTo = 'NONE'
+    current_ticket.assignedTo = 'NONE'
     current_ticket.completedBy = 'NONE'
+    current_ticket.markedBy = request.user.username
     current_ticket.status = "INVALID"
     current_ticket.save()
     return HttpResponseRedirect(reverse('ticketdetails', args=[current_ticket.id]))

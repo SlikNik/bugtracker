@@ -50,7 +50,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/claim/{{ticket.id}}/">Claim Ticket</a>
                             <a class="dropdown-item" href="/complete/{{ticket.id}}/">Complete Ticket</a>
-                            <a class="dropdown-item" href="/edit/{{ticket.id}}/">Edit Ticket</a>
+                            <a class="dropdown-item" href="/ticket/{{ticket.id}}/edit/">Edit Ticket</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/invalid/{{ticket.id}}/">Mark Invalid</a>
                         </div>
@@ -70,7 +70,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/claim/{{ticket.id}}/">Claim Ticket</a>
                             <a class="dropdown-item" href="/complete/{{ticket.id}}/">Complete Ticket</a>
-                            <a class="dropdown-item" href="/edit/{{ticket.id}}/">Edit Ticket</a>
+                            <a class="dropdown-item" href="/ticket/{{ticket.id}}/edit/">Edit Ticket</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/invalid/{{ticket.id}}/">Mark Invalid</a>
                         </div>
@@ -90,7 +90,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/claim/{{ticket.id}}/">Claim Ticket</a>
                             <a class="dropdown-item" href="/complete/{{ticket.id}}/">Complete Ticket</a>
-                            <a class="dropdown-item" href="/edit/{{ticket.id}}/">Edit Ticket</a>
+                            <a class="dropdown-item" href="/ticket/{{ticket.id}}/edit/">Edit Ticket</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/invalid/{{ticket.id}}/">Mark Invalid</a>
                         </div>
@@ -110,7 +110,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="/claim/{{ticket.id}}/">Claim Ticket</a>
                             <a class="dropdown-item" href="/complete/{{ticket.id}}/">Complete Ticket</a>
-                            <a class="dropdown-item" href="/edit/{{ticket.id}}/">Edit Ticket</a>
+                            <a class="dropdown-item" href="/ticket/{{ticket.id}}/edit/">Edit Ticket</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/invalid/{{ticket.id}}/">Mark Invalid</a>
                         </div>
@@ -133,7 +133,7 @@
                     <tbody>
                         <tr>
                             <th scope="row">{{ticket.status}}</th>
-                            <td>{{ ticket.date }}</td>
+                            <td>{{ ticket.age }} day(s)</td>
                             <td>{{ ticket.description }}</td>
                             <td><a href="/user/{{ticket.filedBy.username}}" class="card-link"
                                     style="color: orange;">{{ ticket.filedBy }}</a>

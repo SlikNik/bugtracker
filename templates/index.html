@@ -30,7 +30,8 @@
     </ul>
     <ul class="nav justify-content-end" style="position: absolute; top: 3px; right: 3px;">
         <li class="nav-item">
-            <button class="btn btn-secondary"><a class="nav-link" href="/ticket/submit/" style="color: orangered;">Submit A New Ticket</a></button>
+            <button class="btn btn-secondary"><a class="nav-link" href="/ticket/submit/"
+                    style="color: orangered;">Submit A New Ticket</a></button>
         </li>
     </ul>
     <br>
@@ -67,7 +68,8 @@
                                     style="color: orange;">{{ ticket.assignedTo }}</a></td>
                             <td><a href="/user/{{ticket.filedBy.username}}" class="card-link"
                                     style="color: orange;">{{ ticket.filedBy }}</a></td>
-                            <td>{{ ticket.date }}</td>
+                            <td>{{ ticket.age }} day(s)</td>
+
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -99,7 +101,8 @@
                                     style="color: orange;">{{ ticket.assignedTo }}</a></td>
                             <td><a href="/user/{{ticket.filedBy.username}}" class="card-link"
                                     style="color: orange;">{{ ticket.filedBy }}</a></td>
-                            <td>{{ ticket.date }}</td>
+                            <td>{{ ticket.age }} day(s)</td>
+
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -117,6 +120,7 @@
                             <th scope="col">Title</th>
                             <th scope="col">Assign To</th>
                             <th scope="col">Reported By</th>
+                            <th scope="col">Completed By</th>
                             <th scope="col">Ticket Age</th>
                         </tr>
                     </thead>
@@ -131,7 +135,9 @@
                                     style="color: orange;">{{ ticket.assignedTo }}</a></td>
                             <td><a href="/user/{{ticket.filedBy.username}}" class="card-link"
                                     style="color: orange;">{{ ticket.filedBy }}</a></td>
-                            <td>{{ ticket.date }}</td>
+                            <td><a href="/user/{{ticket.completedBy}}" class="card-link"
+                                    style="color: orange;">{{ ticket.completedBy }}</a></td>
+                            <td>{{ ticket.age }} day(s)</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -149,6 +155,7 @@
                             <th scope="col">Title</th>
                             <th scope="col">Assign To</th>
                             <th scope="col">Reported By</th>
+                            <th scope="col">Marked By</th>
                             <th scope="col">Ticket Age</th>
                         </tr>
                     </thead>
@@ -163,7 +170,9 @@
                                     style="color: orange;">{{ ticket.assignedTo }}</a></td>
                             <td><a href="/user/{{ticket.filedBy.username}}" class="card-link"
                                     style="color: orange;">{{ ticket.filedBy }}</a></td>
-                            <td>{{ ticket.date }}</td>
+                            <td><a href="/user/{{ticket.markedBy}}" class="card-link"
+                                    style="color: orange;">{{ ticket.markedBy }}</a></td>
+                            <td>{{ ticket.age }} day(s)</td>
                         </tr>
                         {% endfor %}
                     </tbody>

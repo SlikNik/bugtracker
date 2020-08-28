@@ -26,7 +26,7 @@ urlpatterns = [
     path('complete/<int:id>/', views.ticket_complete, name='ticketcomplete'),
     path('claim/<int:id>/', views.ticket_claim, name='ticketclaim'),
     path('invalid/<int:id>/', views.ticket_invalid, name='ticketinvalid'),
-    path('submit/<int:id>/', views.ticket_submit, name='ticketsubmit'),
+    path('ticket/submit/', views.ticket_submit, name='ticketsubmit'),
     path('user/<str:username>/', views.users_detail, name='userdetails'),
     path('admin/', admin.site.urls),
 ]
