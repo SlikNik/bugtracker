@@ -8,6 +8,7 @@ from bugs.models import Ticket
 from bugs.forms import AddTicketForm, LoginForm
 # Create your views here.
 
+@login_required
 def index(request):
     new_tickets = Ticket.objects.filter(status='NEW')
     progress_tickets = Ticket.objects.filter(status='IN PROGRESS')
