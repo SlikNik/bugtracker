@@ -99,7 +99,7 @@ def project_claim(request, id):
     current_project = Project.objects.filter(id=id).first()
     current_project.status = "IN PROGRESS"
     current_project.save()
-    return HttpResponseRedirect(reverse('ticketdetails', args=[current_project.id]))
+    return HttpResponseRedirect(reverse('projectdetails', args=[current_project.id]))
 
 @login_required
 @company_required
@@ -107,7 +107,7 @@ def project_complete(request, id):
     current_project = Project.objects.filter(id=id).first()
     current_project.status = "DONE"
     current_project.save()
-    return HttpResponseRedirect(reverse('ticketdetails', args=[current_project.id]))
+    return HttpResponseRedirect(reverse('projectdetails', args=[current_project.id]))
 
 @login_required
 @company_required
@@ -115,7 +115,7 @@ def project_invalid(request, id):
     current_project = Ticket.objects.filter(id=id).first()
     current_project.status = "INVALID"
     current_project.save()
-    return HttpResponseRedirect(reverse('ticketdetails', args=[current_project.id]))
+    return HttpResponseRedirect(reverse('projectdetails', args=[current_project.id]))
 
 @login_required
 @employee_required

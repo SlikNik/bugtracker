@@ -27,7 +27,6 @@
               <h1 class="logo">
                 <a href="{% url 'homepage' %}" style="color: orange;">
                   Bug Tracker
-                  Date: {% now "jS F Y H:i" %}
                   {% if request.user.is_authenticated %}
                     {% if request.user.role == 'COMPANY' %}
                       <span class="icon-feather" data-toggle="tooltip" data-placement="right" title="Company profile" style="color: orange;"></span>
@@ -37,6 +36,8 @@
                   {% endif %}
                 </a>
               </h1>
+              <br>
+              <h4> Date: {% now "jS F Y H:i" %}</h4>
             </div>
             <div class="col-6 text-right">
               {% if request.user.is_authenticated %}
