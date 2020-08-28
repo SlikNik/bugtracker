@@ -19,7 +19,7 @@ class Project(models.Model):
     developers = models.ManyToManyField(Employee)
 
     def __str__(self):
-        return self.status
+        return self.title
 
 class Ticket(models.Model):
     class Status(models.TextChoices):

@@ -37,7 +37,7 @@
                         <tbody>
                             <tr>
                                 <th scope="row">{{project.status}}</th>
-                                <td>{{ project.date }}</td>
+                                <td>{{ project.date|timesince:now }}</td>
                                 <td>{{ project.description }}</td>
                                 <td><a href="/company/{{project.company}}" class="card-link"
                                     style="color: orange;">{{ project.company }}</a>

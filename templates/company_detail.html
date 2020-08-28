@@ -29,8 +29,7 @@
                         <th scope="row">{{project.id}}</th>
                         <td> <a href="/project/{{project.id}}" class="card-link" style="color: orange;">{{ project.title }}</a></td>
                         <td>{{ project.description }}</td>
-                    
-                        <td>{{ project.date }}</td>
+                        <td>{{ project.date|timesince:now }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

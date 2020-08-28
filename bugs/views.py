@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils import timezone
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from custom_users.models import CustomUser, Company, Employee, Role
@@ -8,6 +9,8 @@ from custom_users.decorators import company_required, employee_required
 from bugs.models import Ticket, Project
 from bugs.forms import AddTicketForm, AddProjectForm, LoginForm
 # Create your views here.
+
+now = timezone.now()
 
 def home(request):
     return render(request, 'home.html')
@@ -28,7 +31,7 @@ def tickets(request):
     progress_tickets = Ticket.objects.filter(status='IN PROGRESS')
     done_tickets = Ticket.objects.filter(status='DONE')
     invalid_tickets = Ticket.objects.filter(status='INVALID')
-    return render(request, 'tickets.html', {'new_tickets': new_tickets, 'progress_tickets': progress_tickets, 'done_tickets': done_tickets, 'invalid_tickets': invalid_tickets})
+    return render(request, 'tickets.html', {'new_tickets': new_tickets, 'progress_tickets': progress_tickets, 'done_tickets': done_tickets, 'invalid_tickets': invalid_tickets, 'now': now})
 
 @login_required
 def projects(request):
@@ -36,7 +39,7 @@ def projects(request):
     progress_projects = Project.objects.filter(status='IN PROGRESS')
     done_projects = Project.objects.filter(status='DONE')
     invalid_projects = Project.objects.filter(status='INVALID')
-    return render(request, 'projects.html', {'new_projects': new_projects, 'progress_projects': progress_projects, 'done_projects': done_projects, 'invalid_projects': invalid_projects})
+    return render(request, 'projects.html', {'new_projects': new_projects, 'progress_projects': progress_projects, 'done_projects': done_projects, 'invalid_projects': invalid_projects, 'now': now})
 
 def company_detail(request, username):
     current_user = CustomUser.objects.filter(username=username).first()
@@ -45,7 +48,7 @@ def company_detail(request, username):
     progress_projects = Project.objects.filter(company=current_company).filter(status='IN PROGRESS')
     done_projects = Project.objects.filter(company=current_company).filter(status='DONE')
     invalid_projects = Project.objects.filter(company=current_company).filter(status='INVALID')
-    return render(request, 'company_detail.html', {'current_company': current_company, 'new_projects': new_projects, 'progress_projects': progress_projects, 'done_projects': done_projects, 'invalid_projects': invalid_projects})
+    return render(request, 'company_detail.html', {'current_company': current_company, 'new_projects': new_projects, 'progress_projects': progress_projects, 'done_projects': done_projects, 'invalid_projects': invalid_projects, 'now':now})
 
 def employee_detail(request, username):
     current_user = CustomUser.objects.filter(username=username).first()
@@ -150,7 +153,7 @@ def ticket_edit(request, id):
 @login_required
 @employee_required
 def ticket_claim(request, id):
-    current_ticket = Ticket.objects.filter(id=id).first()
+    current_ticket = Ticket.objects.get(id=id)
     current_ticket.assignedTo = request.user.username
     current_ticket.status = "IN PROGRESS"
     current_ticket.save()
@@ -159,7 +162,7 @@ def ticket_claim(request, id):
 @login_required
 @employee_required
 def ticket_complete(request, id):
-    current_ticket = Ticket.objects.filter(id=id).first()
+    current_ticket = Ticket.objects.get(id=id)
     current_ticket.assignTo = 'NONE'
     current_ticket.completedBy = request.user.username
     current_ticket.status = "DONE"
@@ -169,7 +172,7 @@ def ticket_complete(request, id):
 @login_required
 @employee_required
 def ticket_invalid(request, id):
-    current_ticket = Ticket.objects.filter(id=id).first()
+    current_ticket = Ticket.objects.get(id=id)
     current_ticket.assignTo = 'NONE'
     current_ticket.completedBy = 'NONE'
     current_ticket.status = "INVALID"

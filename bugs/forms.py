@@ -10,7 +10,7 @@ class AddTicketForm(forms.ModelForm):
 
     class Meta:
         model = Ticket
-        fields = ('title', 'description')
+        fields = ('title', 'description', 'project')
 
 class AddProjectForm(forms.ModelForm):
 
