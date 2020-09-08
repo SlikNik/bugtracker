@@ -39,7 +39,10 @@ class Ticket(models.Model):
     assignedTo = models.CharField(max_length=240, default='NONE')
     completedBy = models.CharField(max_length=240, default='NONE')
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['foo_select'].queryset = Project.objects.filter(company=self.request.user.company)
+
     def __str__(self):
         return self.status
-
 
